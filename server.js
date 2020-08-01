@@ -20,12 +20,11 @@ io.on('connection', (sock)=> {
         color = randomColor();
     }
     let playerName = null;
-    const cooldown = createCoolDown(100);
+    const cooldown = createCoolDown(2000);
     sock.emit('board', getBoard());
 
     sock.on('message', (text) => {
         splitterText = text.split('#');
-        console.log('splitterText:- ', splitterText);
         if (splitterText.length > 1) {
             playerName = splitterText[0];
             registerPlayer(playerName, color);
