@@ -29,10 +29,11 @@ const getBoard = (canvas, numCells = 20) => {
     const fillCell = (x, y, color) => {
         ctx.fillStyle = color;
         ctx.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
+        ctx.stroke();
     }
 
     const drawGrid = () => {
-        ctx.strokeStyle = '#333';
+        ctx.strokeStyle = 'black';
         ctx.beginPath();
         for (let i=0; i <numCells + 1; i++) {
             ctx.moveTo(i*cellSize, 0);
@@ -41,7 +42,7 @@ const getBoard = (canvas, numCells = 20) => {
             ctx.lineTo(cellSize*numCells, i*cellSize);
         }
         ctx.stroke();
-;    };
+    };
 
     const clear = () => {
         ctx.clearRect(0,0, canvas.width, canvas.height);
@@ -117,9 +118,10 @@ const randomPlayerName = (length) => {
         sock.emit('turn', getCellCoordinates(x,y));
     }
 
-    sock.on('board', (gameInfo) => {
-        reset(gameInfo.board);
-        renderPlayerNames(gameInfo.players);
+    sock.on('board', (board) => {
+        console.log('board:- ', board);
+        reset(board);
+        //renderPlayerNames(gameInfo.players);
     });
     sock.on('message', log);
     sock.on('turn', ({x,y, color}) =>fillCell(x,y, color));

@@ -7,12 +7,15 @@ const createBoard = (size) => {
     }
 
     const getBoard = () => {
-        return {board, players};
+        return board;
     };
 
     const makeTurn = (x,y,color) => {
-        board[y][x] = color;
-        return isWinningTurn(x,y);
+        if (board[y][x] === null) {
+            board[y][x] = color;
+            return {'isValid': true, 'isWinningTurn': isWinningTurn(x,y)}
+        }
+        return {'isValid': false};
     }
 
     const registerPlayer = (playerName, color) => {

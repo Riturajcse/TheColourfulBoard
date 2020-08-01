@@ -1,3 +1,6 @@
+body{
+    background-color: #0be0fb;
+}
 .controllers-wrapper{
     /* position: relative;
     margin-left: 20px;
@@ -20,6 +23,10 @@
 .canvas-wrapper{
     display: flex;
     justify-content: center;
+}
+
+.canvas-board {
+    background-color: #fff8dc;
 }
 
 .left-panel{

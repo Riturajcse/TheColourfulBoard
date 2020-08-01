@@ -14,7 +14,11 @@ const server = http.createServer(app);
 const io = socketio(server);
 const {clear, getBoard, makeTurn, registerPlayer} = createBoard(20);
 io.on('connection', (sock)=> {
-    const color = randomColor();
+    let color = randomColor();
+    //do not let the color same as board background color
+    if (color === '#fff8dc') {
+        color = randomColor();
+    }
     let playerName = null;
     const cooldown = createCoolDown(100);
     sock.emit('board', getBoard());
@@ -32,15 +36,18 @@ io.on('connection', (sock)=> {
 
     sock.on('turn', ({x,y}) => {
         if (cooldown()) {
-            const playerWon = makeTurn(x,y,color);
-            io.emit('turn', {x,y,color});
+            const turnObj = makeTurn(x,y,color);
+            const playerWon = turnObj.isWinningTurn;
+            if (turnObj.isValid) {
+                io.emit('turn', {x,y,color});
+            }
     
             if (playerWon) {
                 sock.emit('message', 'Congratulations!');
                 io.emit('message', `${playerName} won!`);
                 io.emit('message', 'New Round');
                 clear();
-                io.emit('board');
+                io.emit('board', getBoard());
             }
         }
     });

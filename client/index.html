@@ -6,33 +6,35 @@
         <link rel="stylesheet" href="styles/main.css">
     </head>
     <body>
-        <div class="canvas-wrapper">
-            <div class="left-panel">
+        <div class="game-wrapper">
+            <div class="canvas-wrapper">
+                <!-- <div class="left-panel">
+                    
+                    <ul>
+                        <h4>Online</h4>
+                        <li>Player 1</li>
+                        <li>Player 2</li>
+                        <li>Player 3</li>
+                    </ul>
+
+                </div> -->
+                <div class="canvas-board">
+                    <canvas height="500" width="500"></canvas>
+                </div>
+                <!-- <div>
+
+                </div> -->
                 
-                <ul>
-                    <h4>Online</h4>
-                    <li>Player 1</li>
-                    <li>Player 2</li>
-                    <li>Player 3</li>
-                </ul>
-
             </div>
-            <div>
-                <canvas height="500" width="500"></canvas>
-            </div>
-            <div>
-
-            </div>
-            
-        </div>
-        <div class="controllers-wrapper">
-            <ul id="events"></ul>
-            <div class="controls">
-                <div class="chat-wrappers">
-                    <form id="chat-form">
-                        <input id="chat" autocomplete="off" title="chat"/>
-                        <button id="say">Say</button>
-                    </form>
+            <div class="controllers-wrapper">
+                <ul id="events"></ul>
+                <div class="controls">
+                    <div class="chat-wrappers">
+                        <form id="chat-form">
+                            <input id="chat" autocomplete="off" title="chat"/>
+                            <button id="say">Say</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
